@@ -49,6 +49,7 @@ struct LandmarkObs {
 };
 
 /**
+ * TODO: not used yet
  * Computes the Euclidean distance between two 2D points.
  * @param (x1,y1) x and y coordinates of first point
  * @param (x2,y2) x and y coordinates of second point
@@ -59,6 +60,7 @@ inline double dist(double x1, double y1, double x2, double y2) {
 }
 
 /**
+ * TODO: Not used yet
  * Computes the error between ground truth and particle filter data.
  * @param (gt_x, gt_y, gt_theta) x, y and theta of ground truth
  * @param (pf_x, pf_y, pf_theta) x, y and theta of particle filter
@@ -75,6 +77,24 @@ inline double * getError(double gt_x, double gt_y, double gt_theta, double pf_x,
     error[2] = 2.0 * M_PI - error[2];
   }
   return error;
+}
+
+inline double multiv_prob(double sig_x, double sig_y, double x_obs, double y_obs,
+                   double mu_x, double mu_y) {
+  // calculate normalization term
+  double gauss_norm;
+  gauss_norm = 1 / (2 * M_PI * sig_x * sig_y);
+
+  // calculate exponent
+  double exponent;
+  exponent = (pow(x_obs - mu_x, 2) / (2 * pow(sig_x, 2)))
+               + (pow(y_obs - mu_y, 2) / (2 * pow(sig_y, 2)));
+    
+  // calculate weight using normalization terms and exponent
+  double weight;
+  weight = gauss_norm * exp(-exponent);
+    
+  return weight;
 }
 
 /**
@@ -122,6 +142,7 @@ inline bool read_map_data(std::string filename, Map& map) {
 }
 
 /**
+ * TODO: Not used yet
  * Reads control data from a file.
  * @param filename Name of file containing control measurements.
  * @output True if opening and reading file was successful
@@ -164,6 +185,7 @@ inline bool read_control_data(std::string filename,
 }
 
 /**
+ * TODO: not used yet
  * Reads ground truth data from a file.
  * @param filename Name of file containing ground truth.
  * @output True if opening and reading file was successful
@@ -207,6 +229,7 @@ inline bool read_gt_data(std::string filename, std::vector<ground_truth>& gt) {
 }
 
 /**
+ * TODO: not used yet
  * Reads landmark observation data from a file.
  * @param filename Name of file containing landmark observation measurements.
  * @output True if opening and reading file was successful
