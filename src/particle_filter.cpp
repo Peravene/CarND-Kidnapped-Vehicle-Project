@@ -32,7 +32,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
    * NOTE: Consult particle_filter.h for more information about this method 
    *   (and others in this file).
    */
-  num_particles = 100;  // TODO: Set the number of particles
+  num_particles = 100;
 
   // (Gaussian) distribution for xm ym theta
   std::default_random_engine gen;
@@ -95,8 +95,6 @@ void ParticleFilter::prediction(double delta_t, double std_pos[],
     currentParticle.x += x_rd(gen);
     currentParticle.y += y_rd(gen);
     currentParticle.theta += theta_rd(gen);
-
-    // TODO: cyclic truncate with world size is missing
   }
 
 }
@@ -104,7 +102,8 @@ void ParticleFilter::prediction(double delta_t, double std_pos[],
 void ParticleFilter::dataAssociation(vector<LandmarkObs> predicted, 
                                      vector<LandmarkObs>& observations) {
   /**
-   * TODO: Find the predicted measurement that is closest to each 
+   * TODO: not used yet
+   * Find the predicted measurement that is closest to each 
    *   observed measurement and assign the observed measurement to this 
    *   particular landmark.
    * NOTE: this method will NOT be called by the grading code. But you will 
